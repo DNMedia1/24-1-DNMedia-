@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  ki-system:
+    build: .
+    image: ki-system:latest
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./input:/input
+      - ./output:/output
+      - ./logs:/logs
+      - ./models:/models
+    entrypoint: ["python", "-m", "ki_system.cli"]
+    command: ["--help"]
